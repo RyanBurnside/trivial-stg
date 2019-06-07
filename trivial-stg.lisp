@@ -30,3 +30,5 @@
 ;; run with (trivial-stg::run)
 (defun run ()
   (gamekit:start 'game :swap-interval 0))
+
+(run)
