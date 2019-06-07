@@ -11,26 +11,22 @@
 (defparameter *ch* 320)
 
 
-(gamekit:defgame game () ()
+(gamekit:defgame game (gamekit.postproc:postproc) ()
   (:viewport-width 480)
   (:viewport-height 640)
   (:canvas-width *cw*)
   (:canvas-height *ch*)
   (:viewport-title "Trivial-STG")
-  (:default-initargs 
-   ))
+  (:default-initargs :postproc-indirect-width *cw*
+                     :postproc-indirect-height *ch*))
 
 ;(gamekit:define-image :ship
 ;    (asdf:system-relative-pathname :trivial-gamekit-postproc/example "./example/forthebenefitormrkite.png"))
 
 (defmethod gamekit:draw ((this game))
   (gamekit:draw-text "Score" (gamekit:vec2 120 120))
-  (bodge-canvas:antialias-shapes nil)
+  (bodge-canvas:antialias-shapes nil))
 
-)
-
-
+;; run with (trivial-stg::run)
 (defun run ()
   (gamekit:start 'game :swap-interval 0))
-
-(run)
